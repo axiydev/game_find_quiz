@@ -55,40 +55,43 @@ class _HomePageState extends State<HomePage>
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-          child: Container(
-              height: size.height,
-              width: size.width,
-              color: Colors.transparent,
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: Center(
-                child: Container(
-                    constraints: BoxConstraints(
-                        maxHeight: size.width, maxWidth: size.width),
-                    child: GridView.builder(
-                        itemCount: lt.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 30,
-                            crossAxisSpacing: 30),
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            child: buildCardWid(context,
-                                isActive: this.index == index ? true : false,
-                                animation: animation,
-                                number: lt[index]),
-                            onTap: () {
-                              if (animation.isCompleted) {
-                                controller.reverse();
-                              } else {
-                                controller.forward();
-                              }
-                              setState(() {
-                                this.index = index;
-                              });
-                            },
-                          );
-                        })),
-              ))),
+          child: Padding(
+        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+        child: Container(
+            height: size.height,
+            width: size.width,
+            color: Colors.transparent,
+            child: Center(
+              child: Container(
+                  constraints: BoxConstraints(
+                      maxHeight: size.width, maxWidth: size.width),
+                  child: GridView.builder(
+                      itemCount: lt.length,
+                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 30,
+                          crossAxisSpacing: 30),
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          child: buildCardWid(context,
+                              isActive: this.index == index ? true : false,
+                              animation: animation,
+                              number: lt[index]),
+                          onTap: () {
+                            if (animation.isCompleted) {
+                              controller.reverse();
+                            } else {
+                              controller.forward();
+                            }
+                            setState(() {
+                              this.index = index;
+                            });
+                          },
+                        );
+                      })),
+            )),
+      )),
     );
   }
 
